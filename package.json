@@ -1,0 +1,33 @@
+{
+  "name": "starter-kit",
+  "version": "0.0.1",
+  "description": "",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "babel-loader": "*",
+    "babel-plugin-add-module-exports": "*",
+    "babel-plugin-react-html-attrs": "*",
+    "babel-plugin-transform-class-properties": "*",
+    "babel-plugin-transform-decorators-legacy": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-react": "*",
+    "babel-preset-stage-0": "*",
+    "react": "*",
+    "react-dom": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*",
+    "react-redux": "*",
+    "redux": "*",
+    "redux-logger": "*",
+    "redux-promise-middleware": "*",
+    "redux-thunk": "*",
+    "axios": "*"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
