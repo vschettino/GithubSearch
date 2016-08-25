@@ -38,7 +38,7 @@ export default class Layout extends React.Component {
             return (
                 <div>
                     <UserSearchForm
-                        changeUserName={this.changeUserName.bind(this)}
+                        changeUserName={this.changeUserName.bind(this)}// @todo o layout não tem que saber do click nem do username
                         onClick={this.fetchRepositories.bind(this)}>
                     </UserSearchForm>
                     <ul>{mappedRepositories}</ul>
