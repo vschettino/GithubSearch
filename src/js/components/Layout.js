@@ -43,10 +43,11 @@ export default class Layout extends React.Component {
         }
         return (
             <div>
-                <input changeUserName={this.changeUserName.bind(this)}/>
-                <button onClick={this.fetchRepositories.bind(this)}>load repos</button>
+                <UserSearchForm
+                    changeUserName={this.changeUserName.bind(this)}
+                    onClick={this.fetchRepositories.bind(this)}>
+                </UserSearchForm>
                 <h1>Ocorreu um ERRO #{error.response.status}: {error.message}</h1>
-
             </div>)
 
     }
