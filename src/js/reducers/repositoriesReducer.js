@@ -12,10 +12,12 @@ export default function reducer(state={
             return {...state, fetching: false, error: action.payload}
         }
         case "FETCH_REPOSITORIES_FULFILLED": {
+            console.log("ação agora: ", action);
             return {
                 ...state,
                 fetching: false,
                 fetched: true,
+                error: null,
                 repositories: action.payload.data,
             }
         }

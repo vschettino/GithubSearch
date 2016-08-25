@@ -1,8 +1,8 @@
-import React from "react"
-import {connect} from "react-redux"
-
-import {fetchUser} from "../actions/userActions"
-import {fetchRepositories} from "../actions/repositoriesActions"
+import React from "react";
+import {connect} from "react-redux";
+import {fetchUser} from "../actions/userActions";
+import {fetchRepositories} from "../actions/repositoriesActions";
+import UserSearchForm from "../components/UserSearchForm";
 
 @connect((store) => {
     return {
@@ -32,19 +32,22 @@ export default class Layout extends React.Component {
         const {user, repositories, error} = this.props;
         const mappedRepositories = repositories.map(repo => <li>{repo.name}</li>)
         if (error == null) {
-            return ( <div>
-                <input onChange={this.changeUserName.bind(this)}/>
-                <button onClick={this.fetchRepositories.bind(this)}>load repos</button>
-                <h1>{user.name}</h1>
-                <ul>{mappedRepositories}</ul>
-            </div>)
+            return (
+                <div>
+                    <UserSearchForm
+                        changeUserName={this.changeUserName.bind(this)}
+                        onClick={this.fetchRepositories.bind(this)}>
+                    </UserSearchForm>
+                    <ul>{mappedRepositories}</ul>
+                </div>)
         }
-        return ( <div>
-            <input onChange={this.changeUserName.bind(this)}/>
-            <button onClick={this.fetchRepositories.bind(this)}>load repos</button>
-            <h1>Ocorreu um ERRO #{error.response.status}: {error.message}</h1>
+        return (
+            <div>
+                <input changeUserName={this.changeUserName.bind(this)}/>
+                <button onClick={this.fetchRepositories.bind(this)}>load repos</button>
+                <h1>Ocorreu um ERRO #{error.response.status}: {error.message}</h1>
 
-        </div>)
+            </div>)
 
     }
 }
