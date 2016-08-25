@@ -28,6 +28,9 @@ export default class Layout extends React.Component {
 
     }
 
+    /**
+     * @todo concatenar em um array [] os retornos e só retornar no final
+     */
     render() {
         const {user, repositories, error} = this.props;
         const mappedRepositories = repositories.map(repo => <li>{repo.name}</li>)
