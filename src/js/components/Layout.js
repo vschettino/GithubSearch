@@ -34,24 +34,20 @@ export default class Layout extends React.Component {
     render() {
         const {user, repositories, error} = this.props;
         const mappedRepositories = repositories.map(repo => <li>{repo.name}</li>)
+        var retorno = [];
+        retorno.push(
+            <UserSearchForm
+                changeUserName={this.changeUserName.bind(this)}// @todo o layout não tem que saber do click nem do username
+                onClick={this.fetchRepositories.bind(this)}
+                buttonText="Load Repos">
+            </UserSearchForm>);
         if (error == null) {
-            return (
-                <div>
-                    <UserSearchForm
-                        changeUserName={this.changeUserName.bind(this)}// @todo o layout não tem que saber do click nem do username
-                        onClick={this.fetchRepositories.bind(this)}>
-                    </UserSearchForm>
-                    <ul>{mappedRepositories}</ul>
-                </div>)
+            retorno.push(<ul>{mappedRepositories}</ul>);
+            console.log('passei aqui', retorno);
         }
-        return (
-            <div>
-                <UserSearchForm
-                    changeUserName={this.changeUserName.bind(this)}
-                    onClick={this.fetchRepositories.bind(this)}>
-                </UserSearchForm>
-                <h1>Ocorreu um ERRO #{error.response.status}: {error.message}</h1>
-            </div>)
-
+        else {
+            retorno.push(<h1>Ocorreu um ERRO #{error.response.status}: {error.message}</h1>)
+        }
+        return (<div>{retorno}</div>)
     }
 }

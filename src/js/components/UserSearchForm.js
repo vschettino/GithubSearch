@@ -12,7 +12,7 @@ export default class UserSearchForm extends React.Component {
     render() {
         return (<div>
             <input onChange={this.handleInputChange.bind(this)}/>
-            <button onClick={this.handleButonClick.bind(this)}>load repos</button>
+            <button onClick={this.handleButonClick.bind(this)}>{this.props.buttonText}</button>
         </div>)
 
     }
