@@ -2,7 +2,9 @@ import React from "react";
 import {connect} from "react-redux";
 import {fetchUser} from "../actions/userActions";
 import {fetchRepositories} from "../actions/repositoriesActions";
-import UserSearchForm from "../components/UserSearchForm";
+import RepoSearchForm from "./repoSearch/RepoSearchForm";
+import RepoList from "./repoSearch/RepoList";
+import ErrorMessage from "./common/ErrorMessage";
 
 @connect((store) => {
     return {
@@ -28,25 +30,21 @@ export default class Layout extends React.Component {
 
     }
 
-    /**
-     * @todo concatenar em um array [] os retornos e só retornar no final
-     */
     render() {
         const {user, repositories, error} = this.props;
         const mappedRepositories = repositories.map(repo => <li>{repo.name}</li>)
         var retorno = [];
         retorno.push(
-            <UserSearchForm
+            <RepoSearchForm
                 changeUserName={this.changeUserName.bind(this)}// @todo o layout não tem que saber do click nem do username
                 onClick={this.fetchRepositories.bind(this)}
                 buttonText="Load Repos">
-            </UserSearchForm>);
+            </RepoSearchForm>);
         if (error == null) {
-            retorno.push(<ul>{mappedRepositories}</ul>);
-            console.log('passei aqui', retorno);
+            retorno.push(<RepoList repositories={repositories}></RepoList>)
         }
         else {
-            retorno.push(<h1>Ocorreu um ERRO #{error.response.status}: {error.message}</h1>)
+            retorno.push(<ErrorMessage error={error} />)
         }
         return (<div>{retorno}</div>)
     }
